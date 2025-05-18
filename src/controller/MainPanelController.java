@@ -30,8 +30,6 @@ public class MainPanelController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
-    
-    public static BorderPane staticBorderPane;
 
     @FXML
     private Button btnHome, btnCart, btnOrders;
@@ -45,7 +43,6 @@ public class MainPanelController implements Initializable {
     @FXML
     private LineChart<?, ?> chartReceipt;
 
-<<<<<<< HEAD
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         menus = Arrays.asList(btnHome, btnCart, btnOrders);
@@ -62,29 +59,6 @@ public class MainPanelController implements Initializable {
                 button.setStyle(button == clickedButton
                         ? "-fx-text-fill: #f0f0f0; -fx-background-color: #2b2a26;"
                         : "-fx-text-fill: #f0f0f0; -fx-background-color: #404040;");
-=======
-   
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	 staticBorderPane = borderPane;
-
-    }
-
-    
-    
-    private void changeButtonBackground(ActionEvent e) {
-        Iterator<Button> iteratorMenus = menus.iterator();
-
-        while (iteratorMenus.hasNext()) {
-            Button clickedButton = (Button) e.getSource();
-            Button OtherButton = iteratorMenus.next();
-            if (clickedButton == OtherButton) {
-                clickedButton.setStyle("-fx-text-fill:#f0f0f0;-fx-background-color:#2b2a26;");
-            } else {
-                if (OtherButton != null) {
-                    OtherButton.setStyle("-fx-text-fill:#f0f0f0;-fx-background-color:#404040;");
-                }
->>>>>>> 00e5df6b5bcdcc06bc80dcdcb02fd4385349b4c0
             }
         }
     }
@@ -199,30 +173,5 @@ public class MainPanelController implements Initializable {
     @FXML
     private void loadPage10View(ActionEvent e) {
         loadFXML("Page10View");
-<<<<<<< HEAD
-=======
-        changeButtonBackground(e);
     }
-
-	/*
-	 * @FXML private void loadHomeView(ActionEvent e) { loadFXML("HomeView");
-	 * changeButtonBackground(e); }
-	 */
-    
-   
-    @FXML
-    private void loadHomeView(ActionEvent e) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeView.fxml"));
-            Parent home = loader.load();
-            borderPane.setCenter(home);
-            changeButtonBackground(e);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
->>>>>>> 00e5df6b5bcdcc06bc80dcdcb02fd4385349b4c0
-    }
-
 }
-
-
