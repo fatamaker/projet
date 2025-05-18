@@ -1,7 +1,9 @@
 package controller;
 
+import java.io.IOException;
 import application.models.Categorie;
 import application.models.CategorieM;
+import application.models.Panier;
 import application.models.Produit;
 import application.models.ProduitM;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -9,12 +11,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
@@ -44,9 +51,8 @@ public class Page01Controller implements Initializable {
     private final CategorieM categorieManager = new CategorieM();
     private final ProduitM manager = new ProduitM();
     private final ObservableList<Produit> data = FXCollections.observableArrayList();
+    private Panier monPanier = new Panier();
     
-   
-
     private String selectedImagePath = null;
 
     @FXML
@@ -127,6 +133,17 @@ public class Page01Controller implements Initializable {
                 categorieChoiceBox.setValue(newSelection.getCategorie());
             }
         });
+        
+        produitTable.setRowFactory(tv -> {
+            TableRow<Produit> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    Produit clickedProduit = row.getItem();
+                    openFicheProduit(clickedProduit);
+                }
+            });
+            return row;
+        });
     }
 
     @FXML
@@ -199,6 +216,27 @@ public class Page01Controller implements Initializable {
         }
     }
 
+    @FXML
+    private void openFicheProduit(Produit produitSelectionne) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Page04View.fxml"));
+            Parent root = loader.load();
+
+            Page04Controller controller = loader.getController();
+            controller.setProduit(produitSelectionne); // produit sélectionné
+            controller.setPanier(monPanier); // passage du panier
+
+            Stage stage = new Stage();
+            stage.setTitle("Fiche Produit");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Impossible d'ouvrir la fiche produit.");
+        }
+    }
+    
     private void clearFields() {
         nomField.clear();
         descriptionField.clear();

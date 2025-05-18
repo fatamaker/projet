@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Page04Controller">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.Page04Controller">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="440.0" layoutY="240.0" text="Page 04" textFill="WHITE">
-         <font>
-            <Font size="96.0" />
-         </font>
-      </Label>
+      <VBox spacing="10.0" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+         <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+         </padding>
+
+         <ImageView fx:id="imageProduit" fitHeight="200" fitWidth="200" />
+
+         <!-- Correction ici : on enlève font="$x1" et on utilise style CSS standard -->
+         <Label fx:id="nomProduit" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+         <TextArea fx:id="descriptionProduit" wrapText="true" editable="false" prefRowCount="4"/>
+
+         <Label fx:id="prixProduit" style="-fx-text-fill: green; -fx-font-size: 16px;" />
+
+         <HBox spacing="10">
+            <Label text="Quantité:"/>
+            <Spinner fx:id="quantiteSpinner" prefWidth="80"/>
+         </HBox>
+
+         <Button text="Ajouter au panier" onAction="#ajouterAuPanier"
+                 style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+      </VBox>
    </children>
 </AnchorPane>

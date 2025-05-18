@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
+<AnchorPane prefHeight="700.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.Page03Controller">
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Page03Controller">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="440.0" layoutY="240.0" text="Page 03" textFill="WHITE">
-         <font>
-            <Font size="96.0" />
-         </font>
-      </Label>
+      <VBox spacing="10.0">
+		 <padding>
+        	<Insets top="20" right="20" bottom="20" left="20" />
+    	 </padding>
+         <Label text="Mon Panier" style="-fx-font-size: 24;" />
+
+         <TableView fx:id="tablePanier" prefHeight="250">
+            <columns>
+               <TableColumn fx:id="colProduit" text="Produit" />
+               <TableColumn fx:id="colPrix" text="Prix Unitaire" />
+               <TableColumn fx:id="colQuantite" text="Quantité" />
+               <TableColumn fx:id="colActions" text="Actions" />
+            </columns>
+         </TableView>
+
+         <HBox spacing="30">
+            <Label text="Sous-total :" />
+            <Label fx:id="sousTotalLabel" />
+            <Label text="Frais Livraison :" />
+            <Label fx:id="fraisLivraisonLabel" text="5.000 DT" />
+            <Label text="Total :" />
+            <Label fx:id="totalLabel" />
+         </HBox>
+
+         <Label text="Informations client" style="-fx-font-size: 20;" />
+
+         <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+               <ColumnConstraints percentWidth="30"/>
+               <ColumnConstraints percentWidth="70"/>
+            </columnConstraints>
+
+            <rowConstraints>
+               <RowConstraints/>
+               <RowConstraints/>
+               <RowConstraints/>
+               <RowConstraints/>
+            </rowConstraints>
+
+            <Label text="Nom Complet :" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="nomClient" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+            <Label text="Adresse :" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <TextField fx:id="adresse" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+            <Label text="Téléphone :" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <TextField fx:id="telephone" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+            <Label text="Email (optionnel) :" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <TextField fx:id="email" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+         </GridPane>
+
+         <Button text="Passer la commande"
+                 onAction="#passerCommande"
+                 style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+      </VBox>
    </children>
 </AnchorPane>
