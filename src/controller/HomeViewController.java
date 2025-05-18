@@ -32,4 +32,8 @@ public class HomeViewController {
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 00e5df6b5bcdcc06bc80dcdcb02fd4385349b4c0
